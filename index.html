@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amirhossein Shirzad – Senior Software Engineer, Applied AI</title>
+<meta name="description" content="Senior software engineer and applied AI researcher. Retrieval-augmented generation, backend systems, and production ML deployment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f6f7; --surface:#ffffff; --ink:#15222b; --muted:#566670; --line:#d8dfe3;
+  --accent:#0d6468; --accent-ink:#ffffff; --accent-soft:#e1eff0;
+  --serif:'Newsreader',Georgia,'Times New Roman',serif;
+  --sans:'Instrument Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f171c; --surface:#16222a; --ink:#e8eef1; --muted:#9bacb5; --line:#26363f;
+    --accent:#5cc2c6; --accent-ink:#0b1519; --accent-soft:#16363a; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f171c; --surface:#16222a; --ink:#e8eef1; --muted:#9bacb5; --line:#26363f;
+  --accent:#5cc2c6; --accent-ink:#0b1519; --accent-soft:#16363a; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.75rem}
+.brand{font-family:var(--serif);font-weight:600;font-size:1.15rem;color:var(--ink);text-decoration:none}
+.nav{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap}
+.nav a{color:var(--muted);text-decoration:none;font-size:.95rem;font-weight:500}
+.nav a:hover{color:var(--ink)}
+.theme-btn{font:inherit;font-size:.9rem;font-weight:500;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:.3rem .9rem;cursor:pointer}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Hero */
+.hero{padding:5rem 0 4rem;border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:3.5rem;align-items:start}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.04;letter-spacing:-.015em;margin:0 0 1rem}
+.role{font-size:1.15rem;color:var(--muted);margin:0 0 1.5rem}
+.lede{font-family:var(--serif);font-size:1.3rem;line-height:1.55;max-width:34em;margin:0 0 2rem}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-block;font-weight:600;font-size:.98rem;text-decoration:none;padding:.75rem 1.4rem;border-radius:8px;border:1px solid var(--accent)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{background:transparent;color:var(--accent)}
+.btn-ghost:hover{background:var(--accent-soft)}
+.facts{margin:0;padding:1.5rem 0 0 1.75rem;border-left:2px solid var(--accent)}
+.facts div{margin-bottom:1.25rem}
+.facts div:last-child{margin-bottom:0}
+.facts dt{font-family:var(--serif);font-size:1.45rem;line-height:1.25;font-weight:500}
+.facts dd{margin:.15rem 0 0;color:var(--muted);font-size:.95rem}
+
+/* Sections */
+section.block{padding:4rem 0;border-bottom:1px solid var(--line)}
+section.block:last-of-type{border-bottom:0}
+.block .wrap{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:3rem}
+.block h2{font-family:var(--serif);font-weight:500;font-size:1.7rem;line-height:1.2;margin:0;position:sticky;top:5.5rem;align-self:start}
+.prose p{margin:0 0 1rem;max-width:42em}
+.prose p:last-child{margin-bottom:0}
+
+/* Work rows */
+.work{list-style:none;margin:0;padding:0}
+.work li{padding:1.4rem 0;border-top:1px solid var(--line)}
+.work li:first-child{border-top:0;padding-top:0}
+.work h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0 0 .2rem}
+.work .stack{color:var(--accent);font-size:.9rem;font-weight:500;margin:0 0 .5rem}
+.work p{margin:0;max-width:42em}
+.work p+p{margin-top:.5rem}
+
+/* Timeline */
+.timeline{list-style:none;margin:0;padding:0 0 0 1.75rem;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding-bottom:2.25rem}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:calc(-1.75rem - 6px);top:.55rem;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.timeline li.now::before{background:var(--accent)}
+.timeline h3{font-family:var(--serif);font-weight:600;font-size:1.25rem;margin:0}
+.timeline .where{color:var(--muted);margin:.1rem 0 .6rem}
+.timeline ul{margin:0;padding-left:1.1rem;max-width:42em}
+.timeline li li{padding:0 0 .35rem;position:static}
+.timeline li li::before{display:none}
+
+/* Skills */
+.skills{margin:0;display:grid;gap:0}
+.skills div{display:grid;grid-template-columns:150px 1fr;gap:1rem;padding:.9rem 0;border-top:1px solid var(--line)}
+.skills div:first-child{border-top:0;padding-top:0}
+.skills dt{font-weight:600}
+.skills dd{margin:0;color:var(--muted)}
+
+/* Education */
+.edu{list-style:none;margin:0 0 2rem;padding:0}
+.edu li{padding:1.1rem 0;border-top:1px solid var(--line)}
+.edu li:first-child{border-top:0;padding-top:0}
+.edu h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:0}
+.edu .meta{color:var(--muted);margin:.1rem 0 .4rem;font-size:.95rem}
+.edu p{margin:0;max-width:42em}
+.sub{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:2rem 0 .6rem}
+.cite{max-width:42em;margin:0;padding:1rem 1.25rem;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:6px}
+.plain{margin:0;padding-left:1.1rem;max-width:42em}
+.plain li{margin-bottom:.4rem}
+
+/* Contact */
+.contact-list{list-style:none;margin:0 0 1.5rem;padding:0}
+.contact-list li{padding:.5rem 0}
+.contact-list span{display:inline-block;min-width:6.5rem;color:var(--muted)}
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+
+
+/* Photo */
+.portrait{position:relative;width:168px;height:168px;margin:0 0 2rem;border-radius:50%;border:2px solid var(--accent);padding:6px;background:var(--bg)}
+.portrait img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+.portrait.no-photo{display:grid;place-items:center;font-family:var(--serif);font-size:3rem;font-weight:500;color:var(--accent);background:var(--accent-soft)}
+.portrait.no-photo::before{content:"AS"}
+
+/* Now playing */
+:root{--sun:#c4382f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sun:#ef6a5e}}
+:root[data-theme="dark"]{--sun:#ef6a5e}
+.now-playing{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);max-width:42rem;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.scene{display:block;width:100%;height:100%;min-height:170px;background:var(--accent-soft)}
+.scene .sun{fill:var(--sun)}
+.scene .far{fill:var(--accent);opacity:.35}
+.scene .near{fill:var(--accent)}
+.np-body{padding:1.4rem 1.5rem}
+.np-status{display:flex;align-items:center;gap:.55rem;color:var(--muted);font-size:.9rem;font-weight:500;margin:0 0 .5rem}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--sun);animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--sun) 55%,transparent)}100%{box-shadow:0 0 0 10px transparent}}
+.np-body h3{font-family:var(--serif);font-weight:600;font-size:1.7rem;line-height:1.15;margin:0 0 .15rem}
+.np-meta{color:var(--accent);font-weight:500;margin:0 0 .8rem}
+.np-body p:last-child{margin:0;color:var(--muted)}
+
+/* Page-load moment */
+@media (prefers-reduced-motion:no-preference){
+  .hero .wrap>div:first-child>*,.hero .portrait,.hero .facts{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero h1{animation-delay:.05s!important}
+  .hero .role{animation-delay:.15s!important}
+  .hero .lede{animation-delay:.25s!important}
+  .hero .actions{animation-delay:.35s!important}
+  .hero .portrait{animation-delay:.2s!important}
+  .hero .facts{animation-delay:.4s!important}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .work li{transition:transform .2s ease}
+  .work li:hover{transform:translateX(6px)}
+}
+
+@media (max-width:860px){
+  .hero{padding:3rem 0}
+  .hero .wrap{grid-template-columns:1fr;gap:2.5rem}
+  .block .wrap{grid-template-columns:1fr;gap:1.25rem}
+  .block h2{position:static}
+  .nav a.hide-sm{display:none}
+  .skills div{grid-template-columns:1fr;gap:.2rem}
+  .now-playing{grid-template-columns:1fr}
+  .scene{min-height:140px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">Amirhossein Shirzad</a>
+    <nav class="nav" aria-label="Main">
+      <a class="hide-sm" href="#work">Work</a>
+      <a class="hide-sm" href="#experience">Experience</a>
+      <a class="hide-sm" href="#skills">Skills</a>
+      <a class="hide-sm" href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-btn" id="themeToggle" type="button" aria-label="Switch colour theme">Dark</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Amirhossein Shirzad</h1>
+        <p class="role">Senior software engineer and applied AI researcher</p>
+        <p class="lede">I build retrieval-augmented generation systems, backends and production deployments, and I work across the whole project: research, architecture and the server it finally runs on.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="files/Amirhossein_Shirzad_CV.pdf" download>Download CV (PDF)</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div>
+        <div class="portrait">
+          <img src="images/photo.jpg" alt="Portrait of Amirhossein Shirzad" width="156" height="156" onerror="this.parentNode.classList.add('no-photo');this.remove()">
+        </div>
+      <dl class="facts">
+        <div><dt>Building software since 2013</dt><dd>Android, backend, AI and XR</dd></div>
+        <div><dt>IEEE publication</dt><dd>Multimodal sentiment analysis, ICCKE 2020</dd></div>
+        <div><dt>10,000+ users</dt><dd>University of Tehran mobile app I led</dd></div>
+        <div><dt>1st place, OSINT competition</dt><dd>Fanavard Nationwide Competition, 2016</dd></div>
+      </dl>
+      </div>
+    </div>
+  </div>
+
+  <section class="block" id="about">
+    <div class="wrap">
+      <h2>Profile</h2>
+      <div class="prose">
+        <p>I am a software engineer with a research background in applied AI. My work centres on backend systems, retrieval-augmented generation (RAG) and getting machine-learning components into production.</p>
+        <p>I hold an M.Sc. in Information Technology Engineering from the University of Tehran, completed postgraduate research training in transparent AI and NLP at the University of Galway, and have published a peer-reviewed paper on multimodal deep learning. I have also shipped Android applications and built XR and VR systems for Meta Quest.</p>
+        <p>Currently I am a full-stack developer at Mellat Ventures, where I own the AI platform, the main website and the infrastructure under both.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="off-the-clock">
+    <div class="wrap">
+      <h2>Off the clock</h2>
+      <div class="now-playing">
+        <svg class="scene" viewBox="0 0 260 170" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of a red sun over mountains">
+          <circle class="sun" cx="170" cy="62" r="30"/>
+          <path class="far" d="M0 128 L55 78 L95 112 L145 66 L205 120 L260 90 L260 170 L0 170Z"/>
+          <path class="near" d="M0 150 L60 112 L110 140 L170 104 L260 148 L260 170 L0 170Z"/>
+        </svg>
+        <div class="np-body">
+          <p class="np-status"><span class="dot" aria-hidden="true"></span>Currently playing</p>
+          <h3>Ghost of Y&#333;tei</h3>
+          <p class="np-meta">PlayStation 5</p>
+          <p>When the build is green and the deploy is quiet, you will find me on a horse somewhere in Ezo. Recommendations for what to play next are welcome.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <h2>Selected work</h2>
+      <ul class="work">
+        <li>
+          <h3>MTForum</h3>
+          <p class="stack">Django REST Framework, Next.js, FAISS, SBERT</p>
+          <p>An AI-powered knowledge platform with a RAG pipeline for semantic search and LLM-based question answering. Indexing is incremental, and cross-process locking keeps concurrent updates safe.</p>
+        </li>
+        <li>
+          <h3>CyberRAG</h3>
+          <p class="stack">Multi-agent RAG, Python, Ubuntu VPS</p>
+          <p>A multi-agent retrieval system for cybersecurity question answering. It comes with source code, a technical report, a README and an evaluation test suite, and runs on a self-managed server.</p>
+        </li>
+        <li>
+          <h3>mellatventures.com</h3>
+          <p class="stack">Django, PostgreSQL, Next.js, Docker, Nginx</p>
+          <p>A production platform for a venture capital firm, with a blog engine, a newsletter system and signal-driven cache revalidation. Shared infrastructure includes an OTP-based admin login and a signed, rate-limited file-download service used across both products.</p>
+        </li>
+        <li>
+          <h3>Bank branch queue management</h3>
+          <p class="stack">FastAPI, SQLModel, Next.js</p>
+          <p>An end-to-end queue system for bank branches, built from scratch for a client demonstration.</p>
+        </li>
+        <li>
+          <h3>AI avatar platform</h3>
+          <p class="stack">Speech recognition, text-to-speech, NLP, facial animation, computer vision</p>
+          <p>A multimodal avatar system for interactive applications, with backend services supporting real-time use.</p>
+        </li>
+        <li>
+          <h3>Virtual reality banking</h3>
+          <p class="stack">Unreal Engine, Meta Quest</p>
+          <p>An immersive banking application with secure authentication and financial data visualization.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
+      <ol class="timeline">
+        <li class="now">
+          <h3>Full-stack Developer</h3>
+          <p class="where">Mellat Ventures · Dec 2025 – present</p>
+          <ul>
+            <li>Architected MTForum, including the RAG pipeline for semantic search and LLM question answering.</li>
+            <li>Built and maintain mellatventures.com, with its blog, newsletter and cache revalidation.</li>
+            <li>Own containerised deployment (Docker, Docker Compose, Nginx, Gunicorn) on Linux, including networking, SSR/CSR routing and CI/CD.</li>
+            <li>Designed and deployed a bank branch queue-management system for a client demonstration.</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Co-founder and Software Engineer</h3>
+          <p class="where">VaraSoft · Jul 2023 – Nov 2025</p>
+          <ul>
+            <li>Led engineering for a multimodal AI avatar platform combining speech, NLP, facial animation and computer vision.</li>
+            <li>Designed backend services and APIs for real-time, AI-driven interactive applications.</li>
+            <li>Developed a VR banking application for Meta Quest, and cross-platform Android and Windows apps with image processing and AI features.</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Software Developer</h3>
+          <p class="where">Center for IT and Cyberspace, University of Tehran · Jun 2017 – Aug 2020</p>
+          <ul>
+            <li>Led Android development for the university’s official app, used by 10,000+ students and staff.</li>
+            <li>Designed backend services with Django REST Framework and PostgreSQL, including APIs, data models and deployment automation.</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Android Developer</h3>
+          <p class="where">Raadwin · Mar 2014 – May 2017</p>
+          <ul>
+            <li>Shipped several Android apps, including UT App, Football Sticker, YaadYaar and Mr. Albaloo.</li>
+            <li>Improved performance and reliability while working with design and QA teams.</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Software Developer</h3>
+          <p class="where">PulseWare · Apr 2013 – Feb 2014</p>
+          <ul>
+            <li>Built an automated data-mining and monitoring system for ATM software (C#, ASP.NET).</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <dl class="skills">
+        <div><dt>AI and ML</dt><dd>LLM applications, retrieval-augmented generation, multi-agent systems, NLP, computer vision, deep learning, PyTorch, TensorFlow, Keras, scikit-learn, FAISS</dd></div>
+        <div><dt>Backend</dt><dd>Django, Django REST Framework, FastAPI, REST APIs, WebSockets, PostgreSQL, Redis, SQLModel</dd></div>
+        <div><dt>Frontend</dt><dd>Next.js, TypeScript, React, Tailwind CSS</dd></div>
+        <div><dt>Infrastructure</dt><dd>Linux, Docker, Docker Compose, Nginx, Gunicorn, Git, CI/CD</dd></div>
+        <div><dt>Languages</dt><dd>Python, Java, Kotlin, C#, SQL, Bash</dd></div>
+        <div><dt>Mobile</dt><dd>Android with Java, Kotlin and Jetpack Compose</dd></div>
+        <div><dt>XR and multimedia</dt><dd>Unreal Engine, Unity, virtual reality, augmented reality, Meta Quest</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="block" id="education">
+    <div class="wrap">
+      <h2>Education and research</h2>
+      <div>
+        <ul class="edu">
+          <li>
+            <h3>M.Sc., Information Technology Engineering (Multimedia Systems)</h3>
+            <p class="meta">University of Tehran · 2016 – 2020 · GPA 17.00/20</p>
+            <p>Thesis: Deep Learning Approach for Image and Text Sentiment Analysis, covering text, images, GIFs and memes.</p>
+          </li>
+          <li>
+            <h3>Artificial Intelligence research training</h3>
+            <p class="meta">University of Galway, Ireland · 2020 – 2021</p>
+            <p>Postgraduate research training in transparent AI, visual media processing, NLP, personalization and optimization.</p>
+          </li>
+          <li>
+            <h3>B.Sc., Computer Science</h3>
+            <p class="meta">University of Tehran · 2008 – 2013</p>
+            <p>Thesis: E-voting system.</p>
+          </li>
+        </ul>
+
+        <h3 class="sub">Publication</h3>
+        <p class="cite">Shirzad, A., Zare, H., and Teimouri, M. “Deep Learning approach for text, image, and GIF multimodal sentiment analysis.” 2020 10th International Conference on Computer and Knowledge Engineering (ICCKE), IEEE, 2020.</p>
+
+        <h3 class="sub">Awards</h3>
+        <ul class="plain">
+          <li>1st place, 3rd Fanavard Nationwide Competition in Open-source Intelligence (OSINT), Sharif University of Technology, 2016.</li>
+          <li>Best Student Project Award for UT App, University of Tehran, 2017.</li>
+        </ul>
+
+        <h3 class="sub">Languages</h3>
+        <ul class="plain">
+          <li>English: TOEFL iBT 106/120, Duolingo English Test 130.</li>
+          <li>Persian: native.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <div>
+        <ul class="contact-list">
+          <li><span>Email</span><a href="mailto:amir.shirzad@gmail.com">amir.shirzad@gmail.com</a></li>
+          <li><span>LinkedIn</span><a href="https://linkedin.com/in/shirzad" target="_blank" rel="noopener">linkedin.com/in/shirzad</a></li>
+          <li><span>GitHub</span><a href="https://github.com/voozet" target="_blank" rel="noopener">github.com/voozet</a></li>
+        </ul>
+        <a class="btn btn-primary" href="files/Amirhossein_Shirzad_CV.pdf" download>Download CV (PDF)</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Amirhossein Shirzad</div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeToggle');
+  function isDark(){
+    var t=root.getAttribute('data-theme');
+    if(t) return t==='dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label(){ btn.textContent = isDark() ? 'Light' : 'Dark'; }
+  try{ var saved=localStorage.getItem('theme'); if(saved) root.setAttribute('data-theme',saved); }catch(e){}
+  label();
+  btn.addEventListener('click',function(){
+    var next=isDark()?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{ localStorage.setItem('theme',next); }catch(e){}
+    label();
+  });
+})();
+</script>
+</body>
+</html>
